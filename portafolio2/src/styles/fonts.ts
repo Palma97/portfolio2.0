@@ -1,7 +1,7 @@
-import { Playfair } from "next/font/google";
+import { Caveat } from "next/font/google";
 
-export const playfair = Playfair({
+export const handwriting = Caveat({
   subsets: ["latin"],
-  weight: ["400", "700"], // Puedes ajustar los pesos que necesitas
-  variable: "--font-playfair",
+  weight: ["400", "700"],
+  variable: "--font-handwriting",
 });
