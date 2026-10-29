@@ -39,7 +39,7 @@ export default function Header({
           <a className="brand" href="#inicio" aria-label="Nicolás Palma, home">
             <Image
               className="brand-logo"
-              src="/logoCode.jpg"
+              src="/portfolio2.0/logoCode.jpg"
               alt=""
               width={42}
               height={42}
