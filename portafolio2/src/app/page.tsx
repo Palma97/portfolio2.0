@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import Header, { type Language } from "@/components/header";
+import Header, { type Language, type Theme } from "@/components/header";
 import portrait from "@/images/Me.png";
 
 const translations = {
@@ -216,17 +216,37 @@ const experienceCompanies = [
 
 export default function Home() {
   const [language, setLanguage] = useState<Language>("en");
+  const [theme, setTheme] = useState<Theme>("light");
   const content = translations[language];
 
   useEffect(() => {
     document.documentElement.lang = language;
   }, [language]);
 
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+
+    if (savedTheme === "light" || savedTheme === "dark") {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+  }, [theme]);
+
+  const handleThemeChange = (nextTheme: Theme) => {
+    window.localStorage.setItem("portfolio-theme", nextTheme);
+    setTheme(nextTheme);
+  };
+
   return (
     <div className="portfolio-page" id="inicio">
       <Header
         language={language}
         onLanguageChange={setLanguage}
+        theme={theme}
+        onThemeChange={handleThemeChange}
       />
 
       <main className="portfolio-main">
